@@ -58,10 +58,22 @@ task 'copy_bin' do
     puts  "copy_bin..."
 end
 
+desc "Copy files task combined three seperate task"
 multitask copy_files: %w[copy_src copy_doc copy_bin] do
     puts "All copies complete"
 end
 
+
+#tasks that expect parameters and have prerequisites
+desc "Advanced test for arguments task"
+task :advanced_test, [:first_name, :last_name] => [:test] do |t,args|
+    #set defaults
+    # args.with_defaults(:first_name => "John", :last_name => "Dough")
+    puts "First name is #{args.first_name}"
+    puts "Last name is #{args.last_name}"
+    desc "Aha"
+
+end
 
 
 
